@@ -1,0 +1,27 @@
+[package]
+name = "dbus-server-address-parser"
+version = "0.0.0"
+authors = ["LinkTed <link.ted@mailbox.org>"]
+edition = "2018"
+readme = "README.md"
+keywords = ["parser", "encode", "decode"]
+description = "Library to encode and decode DBus server address"
+license = "BSD-3-Clause"
+repository = "https://github.com/LinkTed/dbus-server-address-parser"
+include = [
+    "src/**/*.rs",
+    "tests/*.rs",
+    "examples/*.rs", 
+    "fuzz/src/*.rs", 
+    "fuzz/Cargo.toml", 
+    "Cargo.toml",
+    "README.md",
+    "LICENSE",
+    ]
+categories = [
+    "parser-implementations",
+    "encoding"
+    ]
+
+[dependencies]
+thiserror = "~1.0.26"

@@ -1,0 +1,17 @@
+[package]
+name = "fuzz"
+version = "0.1.0"
+authors = ["LinkTed <link.ted@mailbox.org>"]
+edition = "2018"
+
+[dependencies]
+honggfuzz = "~0.5.54"
+
+[dependencies.dbus-server-address-parser]
+path = ".."
+
+[[bin]]
+name = "decode_encode_decode"
+path = "src/decode_encode_decode.rs"
+test = false
+doc = false
