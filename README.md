@@ -13,7 +13,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-dbus-server-address-parser = "~1.0.0"
+dbus-server-address-parser = "~1.0.1"
 ```
 
 ## Example
