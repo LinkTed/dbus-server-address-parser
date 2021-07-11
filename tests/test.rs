@@ -54,7 +54,8 @@ fn test_nonce_tcp_1() {
 
 #[test]
 fn test_nonce_tcp_2() {
-    let address = Address::try_from("nonce-tcp:host=localhost,port=123").unwrap();
+    let address =
+        Address::try_from("nonce-tcp:host=localhost,port=123,noncefile=/tmp/nonce").unwrap();
     assert!(address.is_listenable());
     assert!(address.is_connectable());
 }

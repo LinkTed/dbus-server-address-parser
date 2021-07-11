@@ -22,7 +22,7 @@ pub struct NonceTcp {
 impl NonceTcp {
     pub fn is_connectable(&self) -> bool {
         if let Some(port) = self.port {
-            port != 0 && self.host.is_some()
+            port != 0 && self.host.is_some() && self.noncefile.is_some()
         } else {
             false
         }
