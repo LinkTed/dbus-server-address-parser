@@ -1,5 +1,5 @@
 use crate::{Address, Autolaunch, DecodeError, Launchd, NonceTcp, Systemd, Tcp, Unix, Unixexec};
-use std::convert::TryFrom;
+use std::{convert::TryFrom, str::FromStr};
 
 impl Address {
     /// Decode [server addresses] separated by `;`.
@@ -13,6 +13,14 @@ impl Address {
             result.push(address);
         }
         Ok(result)
+    }
+}
+
+impl FromStr for Address {
+    type Err = DecodeError;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        Address::try_from(s)
     }
 }
 

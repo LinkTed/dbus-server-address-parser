@@ -124,3 +124,8 @@ fn test_autolaunch() {
     assert!(!address.is_listenable());
     assert!(address.is_connectable());
 }
+
+#[test]
+fn parse() {
+    "unix:path=/tmp/dbus-test".parse::<Address>().unwrap();
+}
