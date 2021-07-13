@@ -1,16 +1,37 @@
-use crate::{Address, Autolaunch, DecodeError, Launchd, NonceTcp, Systemd, Tcp, Unix, Unixexec};
+use crate::{
+    Address, Addresses, Autolaunch, DecodeError, Launchd, NonceTcp, Systemd, Tcp, Unix, Unixexec,
+};
 use std::{convert::TryFrom, str::FromStr};
 
-impl Address {
+impl FromStr for Addresses {
+    type Err = DecodeError;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        Addresses::try_from(s)
+    }
+}
+
+impl TryFrom<&str> for Addresses {
+    type Error = DecodeError;
+
+    fn try_from(addresses: &str) -> Result<Self, Self::Error> {
+        let addresses = Addresses::decode(addresses)?;
+        Ok(Addresses(addresses))
+    }
+}
+
+impl Addresses {
     /// Decode [server addresses] separated by `;`.
     ///
     /// [server address]: https://dbus.freedesktop.org/doc/dbus-specification.html#addresses
     pub fn decode(addresses: &str) -> Result<Vec<Address>, DecodeError> {
         let mut result = Vec::new();
-        // Split by the ;, because it can have multiple addresses separated by a ;.
-        for address in addresses.split(';') {
-            let address = Address::try_from(address)?;
-            result.push(address);
+        if !addresses.is_empty() {
+            // Split by the ;, because it can have multiple addresses separated by a ;.
+            for address in addresses.split(';') {
+                let address = Address::try_from(address)?;
+                result.push(address);
+            }
         }
         Ok(result)
     }

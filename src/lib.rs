@@ -12,7 +12,7 @@ mod unixexec;
 
 type Guid = [u8; 16];
 
-pub use address::Address;
+pub use address::{Address, Addresses};
 pub use autolaunch::Autolaunch;
 pub use decode::Error as DecodeError;
 pub use family::Family;

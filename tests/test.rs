@@ -1,14 +1,14 @@
-use dbus_server_address_parser::Address;
+use dbus_server_address_parser::{Address, Addresses};
 use std::convert::TryFrom;
 
 #[test]
 fn test_data() {
     let data = include_str!("test.data");
     for l in data.lines() {
-        match Address::decode(l) {
+        match l.parse::<Addresses>() {
             Ok(addresses_1) => {
-                let addresses_1_str = Address::encode(&addresses_1);
-                match Address::decode(&addresses_1_str) {
+                let addresses_1_str = addresses_1.to_string();
+                match addresses_1_str.parse::<Addresses>() {
                     Ok(addresses_2) => {
                         assert_eq!(addresses_1, addresses_2);
                     }
@@ -24,7 +24,7 @@ fn test_data() {
 fn test_error_data() {
     let data = include_str!("test_error.data");
     for l in data.lines() {
-        match Address::decode(l) {
+        match l.parse::<Addresses>() {
             Ok(addresses) => panic!("Could decode: {} {:?}", l, addresses),
             Err(e) => println!("Error: {}", e),
         }

@@ -1,7 +1,14 @@
-use crate::Address;
+use crate::{Address, Addresses};
 use std::fmt::{Display, Formatter, Result as FmtResult};
 
-impl Address {
+impl Display for Addresses {
+    fn fmt(&self, f: &mut Formatter<'_>) -> FmtResult {
+        let addresses = Addresses::encode(&self.0);
+        write!(f, "{}", addresses)
+    }
+}
+
+impl Addresses {
     /// Encode [server addresses] separated by `;`.
     ///
     /// [server address]: https://dbus.freedesktop.org/doc/dbus-specification.html#addresses

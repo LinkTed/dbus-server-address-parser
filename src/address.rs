@@ -1,5 +1,8 @@
 use crate::{Autolaunch, Launchd, NonceTcp, Systemd, Tcp, Unix, Unixexec};
 
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Addresses(pub Vec<Address>);
+
 /// This represents a DBus [server address].
 ///
 /// [server address]: https://dbus.freedesktop.org/doc/dbus-specification.html#addresses
