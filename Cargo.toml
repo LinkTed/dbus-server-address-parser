@@ -11,9 +11,9 @@ repository = "https://github.com/LinkTed/dbus-server-address-parser"
 include = [
     "src/**/*.rs",
     "tests/*.rs",
-    "examples/*.rs", 
-    "fuzz/src/*.rs", 
-    "fuzz/Cargo.toml", 
+    "examples/*.rs",
+    "fuzz/src/*.rs",
+    "fuzz/Cargo.toml",
     "Cargo.toml",
     "README.md",
     "LICENSE",
@@ -24,4 +24,4 @@ categories = [
     ]
 
 [dependencies]
-thiserror = "~1.0.26"
+thiserror = "~1.0.63"
